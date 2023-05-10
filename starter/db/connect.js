@@ -1,0 +1,1 @@
+'mongodb+srv://admin-arman:mongo2505@cluster0.7pt4git.mongodb.net/?retryWrites=true&w=majority'
