@@ -1,25 +1,31 @@
-const express = require("express")
-const tasks = require('./Routes/tasks')
-const app = express()
+const express = require("express");
+const tasks = require("./Routes/tasks");
+const app = express();
+const connectDB = require("./db/connect");
+require('dotenv').config()
 //MIDDLE WARES
-app.use(express.static('public'))
+app.use(express.static("public"));
 app.use(express.json());
 
 //ROUTES
 
-app.get('/', (req,res)=>{
-    res.send("Task Manager App");
-})
+app.get("/", (req, res) => {
+  res.send("Task Manager App");
+});
 
-app.use('/api/v1/tasks',tasks )
+app.use("/api/v1/tasks", tasks);
 
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URL,console.log("Connected to mongodb"));
+    const port = 3000;
+    app.listen(3000, console.log(`Server Running on port ${port}...`));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-
-const port = 3000;
-app.listen(3000,console.log(`Server Running on port ${port}...`))
-
-
-
+start()
 /*
    ALl the routes we will use in this projects
 
