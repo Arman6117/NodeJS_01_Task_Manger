@@ -51,17 +51,22 @@ showTasks()
 tasksDOM.addEventListener('click', async (e) => {
   const el = e.target
   if (el.parentElement.classList.contains('delete-btn')) {
+    console.log('Delete button clicked')
     loadingDOM.style.visibility = 'visible'
     const id = el.parentElement.dataset.id
     try {
       await axios.delete(`/api/v1/tasks/${id}`)
-      showTasks()
+      console.log(id);
+      console.log('Task deleted')
+      await showTasks()
+      console.log('Tasks refreshed')
     } catch (error) {
       console.log(error)
     }
+    loadingDOM.style.visibility = 'hidden'
   }
-  loadingDOM.style.visibility = 'hidden'
 })
+
 
 // form
 

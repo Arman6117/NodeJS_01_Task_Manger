@@ -67,6 +67,7 @@ const deleteTask = async (req,res) => {
     try {
         const {id:taskId} = req.params;
        const task =  await Task.findOneAndDelete({_id:taskId})
+       res.status(200).send("Deleted");
        if(!task)
        {
         res.status(404).json({msg:`No task with id ${taskId}`})
