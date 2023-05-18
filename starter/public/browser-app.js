@@ -54,8 +54,10 @@ tasksDOM.addEventListener('click', async (e) => {
     console.log('Delete button clicked')
     loadingDOM.style.visibility = 'visible'
     const id = el.parentElement.dataset.id
+    console.log('outside try block')
     try {
-      await axios.delete(`/api/v1/tasks/${id}`)
+      console.log("inside try block");
+       axios.delete(`/api/v1/tasks/${id}`)
       console.log(id);
       console.log('Task deleted')
       await showTasks()
